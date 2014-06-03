@@ -12,9 +12,9 @@ class TaskQueue:
         self.tasks = []
 
     def append(self, task):
-        for i in range(len(self.tasks)):
-            if task.url == self.tasks[i].url:
-                return
+        # for i in range(len(self.tasks)):
+        #     if task.url == self.tasks[i].url:
+        #         return
         self.tasks.append(task)
 
     def pop(self):

@@ -10,6 +10,7 @@ class DownloadThread(threading.Thread):
         self.id = thread_id
         self.working = False
         self.task = None
+        print("create thread:" + thread_id.__str__())
         self.start()
 
     def do_task(self, task):
@@ -21,15 +22,12 @@ class DownloadThread(threading.Thread):
         while True:
             if self.task:
                 self.working = True
-                Spider.fetch(self.task.url)
-                self.task = None
-            self.working = False
-            time.sleep(1)
-            print(self.id.__str__()+"wating a task ...\n")
+                Spider.fetch(self.task.url, self)
+            print("[thread:"+self.id.__str__()+"] waiting  task ...\n")
 
 
 class ThreadPool:
-    def __init__(self, min_num=2, max_num=20):
+    def __init__(self, min_num=10, max_num=30):
         self.min_num = min_num
         self.max_num = max_num
         self.threads = []
@@ -40,7 +38,6 @@ class ThreadPool:
             print("min num can not be larger than max num")
         for i in range(self.min_num):
             self.threads.append(DownloadThread(i))
-            print("create thread:" + i.__str__())
 
     def num_of_not_working_thread(self):
         not_working_num = 0
@@ -57,6 +54,7 @@ class ThreadPool:
 
     def get_a_thread(self):
         thread_id = self.__get_a_not_working_thread_id()
+        print(thread_id.__str__() + "is not working...")
         if thread_id == -1:
             thread_len = len(self.threads)
             if thread_len < self.max_num:
