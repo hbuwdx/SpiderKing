@@ -24,7 +24,6 @@ class DownloadThread(threading.Thread):
             if self.task:
                 self.working = True
                 Spider.fetch(self.task.url, self)
-            # print("[thread:"+self.id.__str__()+"] waiting  task ...\n")
 
 
 class ThreadPool:
