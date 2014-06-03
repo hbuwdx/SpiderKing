@@ -1,6 +1,7 @@
 import threading
 import time
 from spider.spider import Spider
+import random
 
 
 class DownloadThread(threading.Thread):
@@ -23,7 +24,7 @@ class DownloadThread(threading.Thread):
             if self.task:
                 self.working = True
                 Spider.fetch(self.task.url, self)
-            print("[thread:"+self.id.__str__()+"] waiting  task ...\n")
+            # print("[thread:"+self.id.__str__()+"] waiting  task ...\n")
 
 
 class ThreadPool:
@@ -60,7 +61,7 @@ class ThreadPool:
             if thread_len < self.max_num:
                 new_thread_id = thread_len + 1
                 self.threads.append(DownloadThread(new_thread_id))
-                return self.threads[new_thread_id]
+                return self.threads[new_thread_id-1]
             else:
                 time.sleep(1)
                 return self.get_a_thread()

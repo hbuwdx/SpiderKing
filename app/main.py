@@ -8,11 +8,8 @@ if __name__ == "__main__":
     print("the application starts on ...")
 
     task_queue = TaskQueue()
-    # task = Task(1, "http://www.cnblogs.com/2gua/archive/2012/09/03/2668125.html", 0)
-    # task_queue.append(task)
-
-    task2 = Task(1, "http://news.baidu.com/", 0)
-    task_queue.append(task2)
+    start_task = Task(1, "http://news.baidu.com/", 0)
+    task_queue.append(start_task)
 
     thread_pool = ThreadPool(50, 60)
 

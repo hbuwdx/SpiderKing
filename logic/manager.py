@@ -6,5 +6,6 @@ class Manager(object):
     def start(self):
         while True:
             if self.task_queue.length() > 0:
+                print "hello:"+self.thread_pool.num_of_not_working_thread().__str__()
                 thread = self.thread_pool.get_a_thread()
                 thread.do_task(self.task_queue.pop())
