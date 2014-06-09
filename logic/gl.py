@@ -13,6 +13,8 @@ DB_COUNT = "count"
 task_queue = TaskQueue()
 thread_pool = ThreadPool(50, 60)
 db = MongodbClient(DB_NAME)
+done_urls = {}
+
 db.collection(DB_COUNT).insert({"name": DB_URLS_NAME, "count": 0})
 db.collection(DB_COUNT).insert({"name": DB_TODO_URLS_NAME, "count": 1})
 db.collection(DB_TODO_URLS_NAME).insert({"id":1,"url":"http://ifeng.com/"})

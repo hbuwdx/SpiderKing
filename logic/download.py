@@ -10,12 +10,12 @@ class DownloadThread(threading.Thread):
         self.id = thread_id
         self.working = False
         self.task = None
-        print("create thread:" + thread_id.__str__())
+        # print("create thread:" + thread_id.__str__())
         self.start()
 
     def do_task(self, task):
         if task and task.url:
-            print("[thread:"+self.id.__str__()+"] do task["+task.url+"]\n")
+            # print("[thread:"+self.id.__str__()+"] do task["+task.url+"]\n")
             self.task = task
 
     def run(self):
@@ -53,7 +53,7 @@ class ThreadPool:
 
     def get_a_thread(self):
         thread_id = self.__get_a_not_working_thread_id()
-        print(thread_id.__str__() + "is not working...")
+        # print(thread_id.__str__() + "is not working...")
         if thread_id == -1:
             thread_len = len(self.threads)
             if thread_len < self.max_num:
