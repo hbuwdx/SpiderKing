@@ -1,7 +1,6 @@
 import threading
 import time
-from spider.spider import Spider
-import random
+from spider import *
 
 
 class DownloadThread(threading.Thread):

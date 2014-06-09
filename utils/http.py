@@ -1,7 +1,16 @@
 import urllib2
+import urllib
 
 
 class HttpRequest(object):
+
+    @staticmethod
+    def urlencode(url):
+        return urllib.urlencode(url)
+
+    @staticmethod
+    def quote(url):
+        return urllib.quote(url)
 
     @staticmethod
     def get_url_content(url):
@@ -11,5 +20,5 @@ class HttpRequest(object):
             response = urllib2.urlopen(req)
             html = response.read()
             return html
-        except Exception:
-            return "hello world"
+        except Exception, e:
+            return "error"
